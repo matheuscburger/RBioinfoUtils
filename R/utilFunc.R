@@ -47,7 +47,11 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 #' @return a vector
 #' @export
 unfactor <- function(x){
-  levels(x)[x]
+	if(is.factor(x)){
+		levels(x)[x]
+	}else{
+		x
+	}
 }
 
 # # EXAMPLE USAGE
