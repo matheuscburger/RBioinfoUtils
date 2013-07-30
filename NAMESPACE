@@ -1,3 +1,4 @@
 export(heatmap.3)
 export(multiplot)
 export(unfactor)
+export(my.unfactor)
