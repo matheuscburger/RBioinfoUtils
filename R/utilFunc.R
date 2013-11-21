@@ -327,7 +327,7 @@ heatmap.3 <- function(x,
 			#if (!is.matrix(RowSideColors))
 			#stop("'RowSideColors' must be a matrix")
 			if (!is.character(RowSideColors) || ncol(RowSideColors) != nr)
-				stop("'RowSideColors' must be a matrix of ncol(x) columns")
+				stop("'RowSideColors' must be a matrix of nrow(x) columns")
 			lmat <- cbind(lmat[, 1] + 1, c(rep(NA, nrow(lmat) - 1), 1), lmat[,2] + 1)
 			#lwid <- c(lwid[1], 0.2, lwid[2])
 			lwid <- c(lwid[1], side.height.fraction*NumRowSideColors, lwid[2])
@@ -362,7 +362,7 @@ heatmap.3 <- function(x,
 			rsc = matrix(as.numeric(rsc), nrow = dim(rsc)[1])
 			image(t(rsc), col = as.vector(rsc.colors), axes = FALSE)
 			if (length(colnames(RowSideColors)) > 0) {
-				axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), colnames(RowSideColors), las = 2, tick = FALSE)
+				axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
 			}
 		}
 	}
