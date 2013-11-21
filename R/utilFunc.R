@@ -362,7 +362,7 @@ heatmap.3 <- function(x,
 			rsc = matrix(as.numeric(rsc), nrow = dim(rsc)[1])
 			image(t(rsc), col = as.vector(rsc.colors), axes = FALSE)
 			if (length(colnames(RowSideColors)) > 0) {
-				axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
+				#axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
 			}
 		}
 	}
