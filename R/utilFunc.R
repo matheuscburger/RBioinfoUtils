@@ -54,6 +54,28 @@ unfactor <- function(x){
 	}
 }
 
+
+#' Plor densities
+#' @param x a matrix or data frame
+#' @return a ggplot2 object
+#' @export
+plotDensities <- function(x, alpha=.5){
+	x.melted <- melt(x)
+	ggplot(x.melted, aes(x=value, colour=variable)) +
+		geom_density(alpha=alpha, aes(fill=variable))
+}
+
+
+#' Plot histogram
+#' @param x a matrix or data frame
+#' @return a ggplot2 object
+#' @export
+plotHist <- function(x, alpha=.5, binwidth=.5){
+	x.melted <- melt(x)
+	ggplot(x.melted, aes(x=value, colour=variable)) +
+		geom_histogram(binwidth=binwidth, alpha=alpha, position="identity", aes(fill=variable)) 
+}
+
 # # EXAMPLE USAGE
 # 
 # # example of colsidecolors rowsidecolors (single column, single row)
