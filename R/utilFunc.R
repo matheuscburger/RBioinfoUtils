@@ -76,6 +76,27 @@ plotHist <- function(x, alpha=.5, binwidth=.5){
 		geom_histogram(binwidth=binwidth, alpha=alpha, position="identity", aes(fill=variable)) 
 }
 
+
+#' Boxplot
+#' @param x a matrix or data frame
+#' @return a ggplot2 object
+#' @export
+plotBox <- function(x, alpha=.5, binwidth=.5){
+	x.melted <- melt(x)
+	ggplot(x.melted, aes(x=variable, y=value, colour=variable)) +
+		geom_boxplot(alpha=alpha, aes(fill=variable)) 
+}
+
+#' Violin plot
+#' @param x a matrix or data frame
+#' @return a ggplot2 object
+#' @export
+plotViolin <- function(x, alpha=.5, binwidth=.5){
+	x.melted <- melt(x)
+	ggplot(x.melted, aes(factor(variable), y=value, colour=variable)) +
+		geom_violin(alpha=alpha, aes(fill=variable)) 
+}
+
 # # EXAMPLE USAGE
 # 
 # # example of colsidecolors rowsidecolors (single column, single row)
