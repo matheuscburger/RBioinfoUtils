@@ -97,6 +97,60 @@ plotViolin <- function(x, alpha=.5, binwidth=.5){
 		geom_violin(alpha=alpha, aes(fill=variable)) 
 }
 
+#' saveRData - Save all objects in a archive, named with pattern name.
+#' @param dir Directory in which the objects will be saved
+#' @return Type NULL
+#' @return none
+#' @author matheus, daniel
+#' @export
+saveRData <- function(dir,prefix='R')
+{
+
+	if( !file.exists(dir) ){
+		stop("No such file or directory.")
+	}
+
+	date = format(Sys.Date(), "%d_%m_%Y")
+
+	i = 0
+
+	file = paste(prefix, date, i, sep="_")
+	file = paste(file, "RData", sep=".")
+
+	while( file.exists(paste(dir,file,sep="/")) )
+	{
+		i = i + 1
+		file = paste(prefix, date, i, sep="_")
+		file = paste(file, "RData", sep=".")
+	}
+
+	save(list = ls(all=TRUE,envir=globalenv()), file = paste(dir,file, sep="/"))
+	print(paste("GlobalEnv saved in '",paste(dir,file, sep="/"),"'",sep=""))
+
+}
+
+#' loadRData - Load all objects saved in the most recent archive
+#' @param dir Directory in which the objects will be loaded
+#' @return Type NULL
+#' @return none
+#' @author matheus
+#' @export
+loadRData <- function(dir, prefix='R')
+{
+	if( !file.exists(dir) )
+		stop("No such file or directory.")
+	files = list.files(path = dir, pattern = paste(prefix,"[^.]*\\.RData",sep=""))
+
+	info <- file.info(paste(dir,files,sep="/"))	# obtem informacoes dos arquivos
+	file <- ""
+	file <- dimnames(info[which(info$mtime==max(info$mtime)),])[[1]]	# encontra o arquivo mais recente
+
+	print(paste("Loading archive ",file," ...",sep=""))
+
+	load(file=file,envir = globalenv())		
+}
+
+
 # # EXAMPLE USAGE
 # 
 # # example of colsidecolors rowsidecolors (single column, single row)
