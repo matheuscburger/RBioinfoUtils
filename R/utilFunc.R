@@ -150,6 +150,16 @@ loadRData <- function(dir, prefix='R')
 	load(file=file,envir = globalenv())		
 }
 
+#' drop.col
+#' @param my.df a data.frame
+#' @param cnames columns to be removed
+#' @return a data.frame without columns informed
+#' @export
+drop.col <- function(my.df, cnames){
+    return(my.df[,-which(colnames(my.df) %in% cnames)])
+}
+
+
 
 # # EXAMPLE USAGE
 # 
