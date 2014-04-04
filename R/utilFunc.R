@@ -167,7 +167,7 @@ drop.col <- function(my.df, cnames){
 hh <- function(my.df){
 	min.col <- min(6, ncol(my.df))
 	min.row <- min(6, nrow(my.df))
-    return(my.df[1:min.col, 1:min.row])
+    return(my.df[1:min.row, 1:min.col])
 }
 
 # # EXAMPLE USAGE
