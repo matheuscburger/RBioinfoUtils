@@ -160,6 +160,15 @@ drop.col <- function(my.df, cnames){
 }
 
 
+#' hh - get just first six lines and columns
+#' @param my.df a data.frame
+#' @return a data.frame without few columns and rows
+#' @export
+hh <- function(my.df){
+	min.col <- min(6, ncol(my.df))
+	min.row <- min(6, nrow(my.df))
+    return(my.df[1:min.col, 1:min.row])
+}
 
 # # EXAMPLE USAGE
 # 
